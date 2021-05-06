@@ -31,16 +31,22 @@ const Course = ({match, history}) => {
 
     const save = () => {
         if(id === '0') {   
-            delete course._id;                              
+            delete course._id;  
+            if(!course.name.length < 1 && !course.points.length < 1){                            
             insert('courses', course, data => {     
                 if(data) return history.push('/courses');
                 console.log('There was error during save data');
-            })
+            })} else {
+                alert('Course name and course points are required!');
+            }
         } else {
+            if(!course.name.length < 1 && !course.points.length < 1){
             update('courses', id, course, data => {
                 if(data) return history.push('/courses');
                 console.log('There was error during save data');
-            })
+            })} else {
+                alert('Course name and course points are required!');
+            }
         }
     }
 

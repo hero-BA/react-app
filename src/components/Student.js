@@ -34,15 +34,21 @@ const Student = ({match, history}) => {
     const save = () => {
         if(id === '0') {
             delete student._id;
+            if(!student.firstName.length < 1 && !student.lastName.length < 1){
             insert('students', student, data => {
                 if(data) return history.push('/students');
                 console.log('There was error during save data');
-            })
+            })} else {
+                alert('First name and Last name are required!');
+            }
         } else {
+            if(!student.firstName.length < 1 && !student.lastName.length < 1){
             update('students', id, student, data => {
                 if(data) return history.push('/students');
                 console.log('There was error during save data');
-            })
+            })} else {
+                alert('First name and Last name are required!');
+            }
         }
     }
 
